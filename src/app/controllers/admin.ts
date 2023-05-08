@@ -1,13 +1,44 @@
 import { Request, Response } from "express"
 import decodedJWT from "../functions/decodedJWT"
+import {
+  TypeProduct,
+  TypeProductSubmitUser,
+} from "../../database/types/Product"
+import createProductNewProduct from "../../database/functions/createNewProduct"
 
 export const addProduct = (req: Request, res: Response) => {
-  const tokenDecoded = decodedJWT({
+  const tokenDecodedAuth = decodedJWT({
     tokenAuth: req.cookies[process.env?.TOKEN_AUTHORIZATION || ""],
     tokenSecret: process.env?.TOKEN_SECRET || "",
   })
 
-  res.send("addProduct")
+  if (!tokenDecodedAuth) {
+    return res.send(401).send({
+      message:
+        "Ocorreu um erro ao resgatar dados pessoais do usuario. Verifique o erro no console!",
+    })
+  }
+
+  const userSubmittedProduct: TypeProductSubmitUser = req.body
+
+  try {
+    createProductNewProduct({
+      ...userSubmittedProduct,
+      addedBy: {
+        email: tokenDecodedAuth.email,
+        id: tokenDecodedAuth.id,
+      },
+    })
+    res
+      .status(200)
+      .send({ message: "Produto adicionado no banco de dados com sucesso!" })
+  } catch (error) {
+    console.log(error)
+    res.status(500).send({
+      message:
+        "Ocorreu um erro ao adicionar o produto no banco de dados! Verifique o console.",
+    })
+  }
 }
 
 export const getProducts = (req: Request, res: Response) => {

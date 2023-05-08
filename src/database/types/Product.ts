@@ -6,14 +6,19 @@ export type TypeOptionsProduct = {
 
 export type TypeSpecificationsProduct = {
   gender: string
-  composition: string | null
-  sewing: string | null
-  obs: string | null
-  guarantee: string | null
-  origin: string | null
+  composition: string
+  sewing: string
+  obs: string
+  guarantee: string
+  origin: string
   indicatesTo: string
   name: string
   brand: string
+}
+
+export type TypeAddedByProduct = {
+  email: string
+  id: string
 }
 
 export type TypeProduct = {
@@ -27,7 +32,7 @@ export type TypeProduct = {
   description: string
   images: string[]
   avaliation: string[] // -- MUDAR
-  addedBy: object // -- MUDAR
+  addedBy: TypeAddedByProduct
   stock: number
   views: number
   likes: string[] // -- MUDAR
@@ -35,3 +40,13 @@ export type TypeProduct = {
   options: TypeOptionsProduct
   specifications: TypeSpecificationsProduct
 }
+
+export type TypeProductSubmitUser = Omit<
+  TypeProduct,
+  "views" | "likes" | "avaliation" | "addedBy"
+>
+
+export type TypeProductCreated = Omit<
+  TypeProduct,
+  "views" | "likes" | "avaliation"
+>
