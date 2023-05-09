@@ -1,7 +1,7 @@
 import { Document } from "mongoose"
 
-import { TypeUser } from "../../types/User"
-import { TypeUserRefactoringPersonalDate } from "./types"
+import { TypeAddressesUser, TypeUser } from "../../../types/User"
+import { TypeUserRefactoringPersonalDate } from "../types"
 
 const refactoringUser = (user: TypeUser & Document) => ({
   personalData: (): TypeUserRefactoringPersonalDate => ({
@@ -9,6 +9,8 @@ const refactoringUser = (user: TypeUser & Document) => ({
     dateOfBirth: user.dateOfBirth,
     email: user.email,
     fullName: `${user.name} ${user.surname}`,
+    notifications: user.notifications,
+    telephone: user.telephone,
   }),
 })
 

@@ -1,9 +1,11 @@
-import express from "express"
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
-import mongoose from "mongoose"
-import routers from "./app/routers"
 import { config as configDotenv } from "dotenv"
+import express from "express"
+import mongoose from "mongoose"
+
+import routers from "./app/routers"
+
 configDotenv()
 
 const app = express()

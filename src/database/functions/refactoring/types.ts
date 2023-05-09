@@ -1,5 +1,5 @@
 import { TypeProduct } from "../../types/Product"
-import { TypeUser } from "../../types/User"
+import { TypeNotifications } from "../../types/User"
 
 export type TypeProductRefactoringAdmin = Omit<
   TypeProduct,
@@ -45,5 +45,5 @@ export type TypeUserRefactoringPersonalDate = {
   cpf: string
   telephone: string
   email: string
-  notifications: string
+  notifications: TypeNotifications
 }

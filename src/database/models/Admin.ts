@@ -1,4 +1,5 @@
 import { model, Schema, Document } from "mongoose"
+
 import { TypeAdmin } from "../types/Admin"
 
 const adminSchema = new Schema({
