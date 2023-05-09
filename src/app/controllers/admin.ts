@@ -1,9 +1,10 @@
 import { Request, Response } from "express"
-import decodedJWT from "../functions/decodedJWT"
-import { TypeProductSubmitUser } from "../../database/types/Product"
+
 import createProductNewProduct from "../../database/functions/createNewProduct"
+import refactoringProduct from "../../database/functions/refactoring/entities/product"
 import Product from "../../database/models/Product"
-import refactoringProduct from "../../database/functions/refactoring/product"
+import { TypeProductSubmitUser } from "../../database/types/Product"
+import decodedJWT from "../functions/decodedJWT"
 
 export const addProduct = (req: Request, res: Response) => {
   const tokenDecodedAuth = decodedJWT({

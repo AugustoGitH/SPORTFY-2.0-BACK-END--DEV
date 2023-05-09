@@ -1,9 +1,9 @@
-import { TypeRouter } from "../types"
 import * as controllers from "../../controllers/product"
+import { TypeRouter } from "../types"
 
 const routers = [
   {
-    pathname: "/get-product",
+    pathname: "/get-product/:id",
     controller: controllers.getProduct,
     method: "get",
   },
