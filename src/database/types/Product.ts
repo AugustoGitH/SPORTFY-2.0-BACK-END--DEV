@@ -24,19 +24,19 @@ export type TypeAddedByProduct = {
 export type TypeProduct = {
   cover: string
   title: string
-  articleType: string
-  freight: string
-  previousValue: number
-  value: number
-  installments: string
+  articleType: string //
+  freight: string //
+  previousValue: number //
+  value: number //
+  installments: string //
   description: string
-  images: string[]
+  images: string[] //
   avaliation: string[] // -- MUDAR
-  addedBy: TypeAddedByProduct
-  stock: number
+  addedBy: TypeAddedByProduct //
+  stock: number //
   views: number
   likes: string[] // -- MUDAR
-  tags: string[]
+  tags: string[] //
   options: TypeOptionsProduct
   specifications: TypeSpecificationsProduct
 }

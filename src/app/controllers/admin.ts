@@ -1,10 +1,9 @@
 import { Request, Response } from "express"
 import decodedJWT from "../functions/decodedJWT"
-import {
-  TypeProduct,
-  TypeProductSubmitUser,
-} from "../../database/types/Product"
+import { TypeProductSubmitUser } from "../../database/types/Product"
 import createProductNewProduct from "../../database/functions/createNewProduct"
+import Product from "../../database/models/Product"
+import refactoringProduct from "../../database/functions/refactoring/product"
 
 export const addProduct = (req: Request, res: Response) => {
   const tokenDecodedAuth = decodedJWT({
@@ -41,6 +40,22 @@ export const addProduct = (req: Request, res: Response) => {
   }
 }
 
-export const getProducts = (req: Request, res: Response) => {
-  res.send("getProducts")
+export const getProducts = async (req: Request, res: Response) => {
+  try {
+    const products = await Product.find({})
+    const productsRefactoring = products.map((product) =>
+      refactoringProduct(product).admin()
+    )
+
+    res.status(200).send({
+      message: "Produtos resgatados com sucesso!",
+      data: { products: productsRefactoring },
+    })
+  } catch (error) {
+    console.log(error)
+
+    res.status(200).send({
+      message: "Ocorreu um erro ao resgatar os produtos! Consulte o console.",
+    })
+  }
 }

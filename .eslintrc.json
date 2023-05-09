@@ -18,7 +18,31 @@
         ]
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "eslint-plugin-import-helpers"
     ],
-    "rules": {}
+    "rules": {
+        "prettier/prettier": "off",
+        "import-helpers/order-imports": [
+            "error",
+            {
+                "newlinesBetween": "always",
+                "groups": [
+                    "/^react/",
+                    "module",
+                    "/^next/",
+                    "/^components/",
+                    [
+                        "parent",
+                        "sibling",
+                        "index"
+                    ]
+                ],
+                "alphabetize": {
+                    "order": "asc",
+                    "ignoreCase": true
+                }
+            }
+        ]
+    }
 }

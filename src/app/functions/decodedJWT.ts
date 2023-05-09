@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken"
+
 import { TypeDecodedTokenAuth } from "./types"
 
 type TypeParamDecodedJWT = {

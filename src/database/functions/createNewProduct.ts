@@ -1,7 +1,7 @@
 import Product from "../models/Product"
 import { TypeProductCreated } from "../types/Product"
 
-const createProductNewProduct = async (product: TypeProductCreated) => {
+const createNewProduct = async (product: TypeProductCreated) => {
   const newProduct = new Product(product)
   try {
     await newProduct.save()
@@ -12,4 +12,4 @@ const createProductNewProduct = async (product: TypeProductCreated) => {
   }
 }
 
-export default createProductNewProduct
+export default createNewProduct

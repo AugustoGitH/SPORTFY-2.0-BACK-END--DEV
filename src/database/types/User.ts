@@ -31,8 +31,10 @@ export type TypeUser = {
   cpf: string
   telephone: string
   savedCards: string[] // --MUDAR
-  addresses: TypeAddressesUser
+  addresses: TypeAddressesUser[]
   preferences: TypePreferencesUser
   notifications: TypeNotifications
   orders: string[] // --MUDAR
 }
+
+export type TypeUserSubmitRegister = Omit<TypeUser, "savedCards">
